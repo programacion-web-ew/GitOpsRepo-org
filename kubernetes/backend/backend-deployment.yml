@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend-app # Nombre del contenedor
+          image: tu-dockerhub-user/tu-imagen-backend:latest # <--- IMAGEN (La actualizaremos)
+          ports:
+            - containerPort: 8000
+          env: 
+            - name: DB_URL 
+              value: "jdbc:mysql://mysql-svc:3306/biblioteca1?useSSL=false&serverTimezone=UTC" # <--- USAR NOMBRE DEL SERVICE DE MySQL
+            - name: DB_USERNAME
+              valueFrom: # Obtener el valor del Secret
+                secretKeyRef:
+                  name: mysql-credentials # Nombre del Secret
+                  key: mysql-user # Clave dentro del Secret
+            - name: DB_PASSWORD
+              valueFrom: # Obtener el valor del Secret
+                secretKeyRef:
+                  name: mysql-credentials # Nombre del Secret
+                  key: mysql-password # Clave dentro del Secret

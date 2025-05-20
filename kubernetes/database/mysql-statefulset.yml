@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-db
+spec:
+  serviceName: mysql-service # Nombre del Service Headless asociado
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+              name: mysql
+          env: # Configuración de MySQL usando variables de entorno
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credential
+                  key: mysql-root-password
+            - name: MYSQL_DATABASE # Nombre de la base de datos a crear
+              value: biblioteca1
+            - name: MYSQL_USER # Usuario para tu aplicación
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials # Nombre del Secret donde está el usuario
+                  key: mysql-user
+            - name: MYSQL_PASSWORD # Contraseña del usuario de la aplicación
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials # Nombre del Secret donde está la contraseña
+                  key: mysql-password
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql # Ruta donde MySQL guarda sus datos
+      volumeClaimTemplates: # Usar un PVC Template para el almacenamiento persistente
+        - metadata:
+            name: mysql-persistent-storage # Nombre del volumen
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            resources:
+              requests:
+                storage: 5Gi # Tamaño del PVC para este volumen (debe ser igual o menor al del PVC global si usas uno)

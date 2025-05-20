@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-app
+          image: tu-dockerhub-user/tu-imagen-frontend:latest # <--- IMAGEN (La actualizaremos)
+          ports:
+            - containerPort: 80
+          env:
+            - name: BACKEND_API_URL # Nombre de la variable de entorno en Angular (ajusta)
+              value: http://backend-svc:8000/biblioteca1/v1 # <--- USAR NOMBRE DEL SERVICE DEL BACKEND
