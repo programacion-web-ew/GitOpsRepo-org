@@ -4,7 +4,7 @@ metadata:
   name: mysql-db
   namespace: biblioteca
 spec:
-  serviceName: mysql-service # Nombre del Service Headless asociado
+  serviceName: mysql-service
   replicas: 1
   selector:
     matchLabels:
@@ -24,7 +24,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-credentials # <--- Posible corrección de nombre del Secret (antes 'mysql-credential')
+                  name: mysql-credentials # ¡Esto está correcto ahora!
                   key: mysql-root-password
             - name: MYSQL_DATABASE
               value: biblioteca1
@@ -41,12 +41,12 @@ spec:
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
-  volumeClaimTemplates: # <--- ¡ESTA SECCIÓN DEBE ESTAR BIEN INDENTADA AQUÍ! (Al mismo nivel que 'template', 'selector', etc.)
+  volumeClaimTemplates: # Esta sección está bien ubicada e indentada aquí
     - metadata:
-        name: mysql-persistent-storage # Este nombre se usa en volumeMounts
+        name: mysql-persistent-storage
       spec:
         accessModes: [ "ReadWriteOnce" ]
-        storageClassName: standard # Debe coincidir con una StorageClass en tu Minikube
+        storageClassName: standard
         resources:
           requests:
             storage: 5Gi
