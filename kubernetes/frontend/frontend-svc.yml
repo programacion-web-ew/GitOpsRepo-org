@@ -8,8 +8,6 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 80 # Puerto del Service
-      targetPort: 80 # Puerto del contenedor (Nginx)
+      port: 80
+      targetPort: 80
   type: ClusterIP
-  # Opcional: Puedes especificar un nodePort fijo si quieres
-  # nodePort: 30000 # Rango usualmente entre 30000-32767

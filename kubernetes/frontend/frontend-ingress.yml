@@ -2,9 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: frontend-ingress
-  namespace: biblioteca # Asegúrate de usar el namespace correcto
+  namespace: biblioteca
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: / # Importante si tu frontend espera la raíz /
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: minikube.frontend 
@@ -16,4 +16,4 @@ spec:
           service:
             name: frontend-svc 
             port:
-              number: 80
+              number: 8080
