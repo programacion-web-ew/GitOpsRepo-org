@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
+  namespace: biblioteca
 spec:
   replicas: 1
   selector:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend-app # Nombre del contenedor
-          image: tu-dockerhub-user/tu-imagen-backend:latest # <--- IMAGEN (La actualizaremos)
+          image: ewdeve/pgbackend:latest # <--- IMAGEN (La actualizaremos)
           ports:
             - containerPort: 8000
           env: 

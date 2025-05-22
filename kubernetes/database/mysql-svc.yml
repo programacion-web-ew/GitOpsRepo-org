@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql-svc # Nombre del Service "El backend usará este nombre"
+  namespace: biblioteca
 spec:
   selector:
     app: mysql # Selecciona los Pods del StatefulSet

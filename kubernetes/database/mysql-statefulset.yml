@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql-db
+  namespace: biblioteca
 spec:
   serviceName: mysql-service # Nombre del Service Headless asociado
   replicas: 1
