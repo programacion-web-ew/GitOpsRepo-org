@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: minikube.frontend # <--- Este es tu nombre de dominio
+  - host: minikube.frontend
     http:
       paths:
       - path: /
