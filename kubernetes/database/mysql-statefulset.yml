@@ -4,7 +4,7 @@ metadata:
   name: mysql-db
   namespace: biblioteca
 spec:
-  serviceName: mysql-service
+  serviceName: mysql-service #validar
   replicas: 1
   selector:
     matchLabels:
