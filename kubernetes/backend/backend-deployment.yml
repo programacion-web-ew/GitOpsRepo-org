@@ -19,7 +19,7 @@ spec:
           image: ewdeve/pgbackend:2ac8f7e
 =======
         - name: backend-app
-          image: ewdeve/pgbackend:latest
+          image: ewdeve/pgbackend:2ac8f7e
 >>>>>>> 124e297 (change endpoint bd)
           ports:
             - containerPort: 8000
