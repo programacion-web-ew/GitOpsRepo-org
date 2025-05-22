@@ -41,11 +41,13 @@ spec:
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql # Ruta donde MySQL guarda sus datos
+
       volumeClaimTemplates: # Usar un PVC Template para el almacenamiento persistente
         - metadata:
             name: mysql-persistent-storage # Nombre del volumen
           spec:
             accessModes: [ "ReadWriteOnce" ]
+            storageClassName: standard #Corrección del StorageClass se debe definir en el PVC
             resources:
               requests:
                 storage: 5Gi # Tamaño del PVC para este volumen (debe ser igual o menor al del PVC global si usas uno)
