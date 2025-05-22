@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend-app
-          image: ewdeve/pgweb:latest # <--- IMAGEN (La actualizaremos)
+          image: ewdeve/pgweb:c19ca3f
           ports:
             - containerPort: 80
           env:
