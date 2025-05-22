@@ -14,20 +14,25 @@ spec:
         app: backend
     spec:
       containers:
+<<<<<<< HEAD
         - name: backend-app # Nombre del contenedor
           image: ewdeve/pgbackend:2ac8f7e
+=======
+        - name: backend-app
+          image: ewdeve/pgbackend:latest
+>>>>>>> 124e297 (change endpoint bd)
           ports:
             - containerPort: 8000
-          env: 
-            - name: DB_URL 
-              value: "jdbc:mysql://mysql-service:3306/biblioteca1?useSSL=false&serverTimezone=UTC" # <--- USAR NOMBRE DEL SERVICE DE MySQL
+          env:
+            - name: DB_URL
+              value: "jdbc:mysql://mysql-svc:3306/biblioteca1?useSSL=false&serverTimezone=UTC"
             - name: DB_USERNAME
-              valueFrom: # Obtener el valor del Secret
+              valueFrom:
                 secretKeyRef:
-                  name: mysql-credentials # Nombre del Secret
-                  key: mysql-user # Clave dentro del Secret
+                  name: mysql-credentials
+                  key: mysql-user
             - name: DB_PASSWORD
-              valueFrom: # Obtener el valor del Secret
+              valueFrom:
                 secretKeyRef:
-                  name: mysql-credentials # Nombre del Secret
-                  key: mysql-password # Clave dentro del Secret
+                  name: mysql-credentials
+                  key: mysql-password

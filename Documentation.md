@@ -17,3 +17,11 @@ admin
 
 kubectl create namespace biblioteca
 kubectl port-forward pod/mysql-db-0 3309:3306 -n biblioteca
+
+
+Autenticación SSH REPOBACKEND AL REPOGITOPS
+ssh-keygen -t rsa -b 4096 -C "gitops-deploy-key"
+id_rsa (o el nombre que le des, clave privada)
+id_rsa.pub (o el nombre que le des, clave pública)
+
+ssh-keygen -p -m PEM -f ~/.ssh/id_rsa
