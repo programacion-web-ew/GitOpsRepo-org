@@ -19,6 +19,10 @@ spec:
           ports:
             - containerPort: 8000
           env:
+            - name: DB_HOST
+              value: mysql-svc
+            - name: DB_PORT
+              value: "3306"
             - name: DB_URL
               value: "jdbc:mysql://mysql-svc:3306/biblioteca1?useSSL=false&serverTimezone=UTC"
             - name: DB_USERNAME

@@ -10,6 +10,6 @@ spec:
     - protocol: TCP
       port: 80 # Puerto del Service
       targetPort: 80 # Puerto del contenedor (Nginx)
-  type: LoadBalancer # <--- Para acceso fácil desde fuera de Minikube
+  type: ClusterIP
   # Opcional: Puedes especificar un nodePort fijo si quieres
   # nodePort: 30000 # Rango usualmente entre 30000-32767
