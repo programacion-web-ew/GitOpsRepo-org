@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend-app # Nombre del contenedor
-          image: ewdeve/pgbackend:de7b4f9
+          image: ewdeve/pgbackend:7b59197
           ports:
             - containerPort: 8000
           env:
