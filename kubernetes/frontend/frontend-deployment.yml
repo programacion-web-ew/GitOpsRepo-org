@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: frontend-app
-          image: ewdeve/pgweb:c19ca3f
+          image: ewdeve/pgweb:latest
           ports:
             - containerPort: 80
           env:
-            - name: BACKEND_API_URL # Nombre de la variable de entorno en Angular (ajusta)
-              value: http://backend-svc:8000/biblioteca1/v1 # <--- USAR NOMBRE DEL SERVICE DEL BACKEND
+            - name: BACKEND_API_URL
+              value: http://backend-svc:8000/biblioteca1/v1

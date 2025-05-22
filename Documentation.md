@@ -25,3 +25,6 @@ id_rsa (o el nombre que le des, clave privada)
 id_rsa.pub (o el nombre que le des, clave pública)
 
 ssh-keygen -p -m PEM -f ~/.ssh/id_rsa
+
+
+minikube addons enable ingress
