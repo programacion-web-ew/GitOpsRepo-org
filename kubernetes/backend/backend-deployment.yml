@@ -14,13 +14,8 @@ spec:
         app: backend
     spec:
       containers:
-<<<<<<< HEAD
         - name: backend-app # Nombre del contenedor
-          image: ewdeve/pgbackend:2ac8f7e
-=======
-        - name: backend-app
-          image: ewdeve/pgbackend:2ac8f7e
->>>>>>> 124e297 (change endpoint bd)
+          image: ewdeve/pgbackend:latest
           ports:
             - containerPort: 8000
           env:
