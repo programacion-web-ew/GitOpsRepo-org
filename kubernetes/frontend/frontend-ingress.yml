@@ -7,13 +7,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: minikube.frontend 
+  - host: minikube.frontend # <--- Este es tu nombre de dominio
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: frontend-svc 
+            name: frontend-svc
             port:
-              number: 8080
+              number: 80
