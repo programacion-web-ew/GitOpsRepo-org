@@ -20,33 +20,33 @@ spec:
           ports:
             - containerPort: 3306
               name: mysql
-          env: # Configuración de MySQL usando variables de entorno
+          env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-credentials
+                  name: mysql-credentials # <--- Posible corrección de nombre del Secret (antes 'mysql-credential')
                   key: mysql-root-password
-            - name: MYSQL_DATABASE # Nombre de la base de datos a crear
+            - name: MYSQL_DATABASE
               value: biblioteca1
-            - name: MYSQL_USER # Usuario para tu aplicación
+            - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: mysql-credentials # Nombre del Secret donde está el usuario
+                  name: mysql-credentials
                   key: mysql-user
-            - name: MYSQL_PASSWORD # Contraseña del usuario de la aplicación
+            - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-credentials # Nombre del Secret donde está la contraseña
+                  name: mysql-credentials
                   key: mysql-password
           volumeMounts:
             - name: mysql-persistent-storage
-              mountPath: /var/lib/mysql # Ruta donde MySQL guarda sus datos
-      volumeClaimTemplates: # Usar un PVC Template para el almacenamiento persistente
-      - metadata:
-          name: mysql-persistent-storage # Nombre del volumen
-        spec:
-          accessModes: [ "ReadWriteOnce" ]
-          storageClassName: standard #Corrección del StorageClass se debe definir en el PVC
-          resources:
-            requests:
-              storage: 5Gi # Tamaño del PVC para este volumen (debe ser igual o menor al del PVC global si usas uno)
+              mountPath: /var/lib/mysql
+  volumeClaimTemplates: # <--- ¡ESTA SECCIÓN DEBE ESTAR BIEN INDENTADA AQUÍ! (Al mismo nivel que 'template', 'selector', etc.)
+    - metadata:
+        name: mysql-persistent-storage # Este nombre se usa en volumeMounts
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: standard # Debe coincidir con una StorageClass en tu Minikube
+        resources:
+          requests:
+            storage: 5Gi
