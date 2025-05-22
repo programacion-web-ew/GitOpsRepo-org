@@ -16,3 +16,4 @@ admin
 59WOAk5VfkPhneBn
 
 kubectl create namespace biblioteca
+kubectl port-forward pod/mysql-db-0 3309:3306 -n biblioteca
