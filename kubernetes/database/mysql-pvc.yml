@@ -1,0 +1,11 @@
+ apiVersion: v1
+ kind: PersistentVolumeClaim
+ metadata:
+   name: mysql-pvc
+   namespace: biblioteca
+ spec:
+   accessModes:
+     - ReadWriteOnce # Solo puede ser montado por un nodo a la vez
+   resources:
+     requests:
+       storage: 5Gi # Tamaño de almacenamiento que necesitas (ajusta según tus datos)
