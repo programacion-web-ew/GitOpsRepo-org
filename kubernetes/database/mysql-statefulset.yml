@@ -47,7 +47,7 @@ spec:
             name: mysql-persistent-storage # Nombre del volumen
           spec:
             accessModes: [ "ReadWriteOnce" ]
-            storageClassName: standard #Corrección del StorageClass se debe definir en el PVC
+            #storageClassName: standard #Corrección del StorageClass se debe definir en el PVC
             resources:
               requests:
                 storage: 5Gi # Tamaño del PVC para este volumen (debe ser igual o menor al del PVC global si usas uno)
