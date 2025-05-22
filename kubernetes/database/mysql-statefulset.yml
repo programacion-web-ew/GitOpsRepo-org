@@ -24,7 +24,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-credential
+                  name: mysql-credentials
                   key: mysql-root-password
             - name: MYSQL_DATABASE # Nombre de la base de datos a crear
               value: biblioteca1
@@ -41,13 +41,12 @@ spec:
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql # Ruta donde MySQL guarda sus datos
-
       volumeClaimTemplates: # Usar un PVC Template para el almacenamiento persistente
-        - metadata:
-            name: mysql-persistent-storage # Nombre del volumen
-          spec:
-            accessModes: [ "ReadWriteOnce" ]
-            #storageClassName: standard #Corrección del StorageClass se debe definir en el PVC
-            resources:
-              requests:
-                storage: 5Gi # Tamaño del PVC para este volumen (debe ser igual o menor al del PVC global si usas uno)
+      - metadata:
+          name: mysql-persistent-storage # Nombre del volumen
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          storageClassName: standard #Corrección del StorageClass se debe definir en el PVC
+          resources:
+            requests:
+              storage: 5Gi # Tamaño del PVC para este volumen (debe ser igual o menor al del PVC global si usas uno)
