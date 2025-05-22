@@ -10,5 +10,4 @@ spec:
     - protocol: TCP
       port: 3306
       targetPort: mysql # Nombre del puerto en el contenedor del Pod
-  type: LoadBalancer
-#  clusterIP: None # Service Headless (no tiene ClusterIP, útil para StatefulSets y DNS)
+  clusterIP: None # Service Headless (no tiene ClusterIP, útil para StatefulSets y DNS)
