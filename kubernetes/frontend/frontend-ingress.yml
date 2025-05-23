@@ -6,6 +6,10 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+  - hosts:
+    - minikube.frontend
+    secretName: minikube-tls e
   rules:
   - host: minikube.frontend
     http:
@@ -16,4 +20,4 @@ spec:
           service:
             name: frontend-svc
             port:
-              number: 80
+              number: 80 
