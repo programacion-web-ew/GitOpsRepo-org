@@ -7,6 +7,8 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 Si el comando anterior no funciona editar el manifiesto
 kubectl edit svc argocd-server -n argocd
 
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+
 kubectl exec -n argocd argocd-server-6576896669-rnwfp -- argocd admin initial-password -n argocd
 
 minikube:

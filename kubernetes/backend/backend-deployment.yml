@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
         - name: backend-app
-          image: ewdeve/pgbackend:6a1b3d0
+          image: ewdeve/pgbackend:latest
           ports:
             - containerPort: 8000
           env:
             - name: DB_URL
-              value: "jdbc:mysql://mysql-svc:3306/biblioteca1?useSSL=false&allowPublicKeyRetrieval=True&serverTimezone=UTC" # <-- ¡Aquí está el cambio!
+              value: "jdbc:mysql://mysql-svc:3306/biblioteca1?useSSL=false&allowPublicKeyRetrieval=True&serverTimezone=UTC"
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:

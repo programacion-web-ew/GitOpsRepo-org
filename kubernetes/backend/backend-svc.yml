@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: minikube.backend
+  name: backend-svc
   namespace: biblioteca
 spec:
   selector:
     app: backend
   ports:
     - protocol: TCP
-      port: 8000 # Puerto svc
-      targetPort: 8000 # Puerto del contenedor del Pod
+      port: 8000
+      targetPort: 8000
   type: ClusterIP

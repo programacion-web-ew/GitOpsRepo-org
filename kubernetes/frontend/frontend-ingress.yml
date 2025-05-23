@@ -1,23 +1,34 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: frontend-ingress
+  name: app-ingress # Un solo Ingress para ambas apps
   namespace: biblioteca
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    # No necesitas una anotación específica para el Load Balancer de DO aquí,
+    # DO lo provisiona automáticamente cuando detecta un Ingress.
+    # Si quieres usar Nginx Ingress Controller (que DO puede integrar), puedes usar esto:
+    kubernetes.io/ingress.class: "nginx"
+    # Ajustes de reescritura para el backend
+    nginx.ingress.kubernetes.io/rewrite-target: /biblioteca1/v1/$2
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    # Eliminamos ssl-redirect y tls por ahora para simplificar,
+    # si quieres HTTPS, configurar Cert-Manager es el siguiente paso.
 spec:
-  tls:
-  - hosts:
-    - minikube.frontend
-    secretName: minikube-tls
   rules:
-  - host: minikube.frontend
+  - host: biblioteca.example.com # ¡REEMPLAZA ESTO con tu dominio real o ignora el host si usas solo IP!
     http:
       paths:
-      - path: /
+      - path: /biblioteca1/v1(/|$)(.*) # Ruta para el backend
         pathType: Prefix
         backend:
           service:
-            name: frontend-svc
+            name: backend-svc # Apunta al nuevo nombre del servicio backend
+            port:
+              number: 8000
+      - path: / # Ruta para el frontend (la raíz)
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-svc # Apunta al servicio frontend
             port:
               number: 80

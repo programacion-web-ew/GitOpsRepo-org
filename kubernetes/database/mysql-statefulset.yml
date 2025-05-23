@@ -4,7 +4,7 @@ metadata:
   name: mysql-db
   namespace: biblioteca
 spec:
-  serviceName: mysql-service #validar
+  serviceName: mysql-svc
   replicas: 1
   selector:
     matchLabels:
@@ -24,29 +24,29 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-credentials # ¡Esto está correcto ahora!
+                  name: mysql-credentials
                   key: mysql-root-password
             - name: MYSQL_DATABASE
               value: biblioteca1
-            # - name: MYSQL_USER
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: mysql-credentials
-            #       key: mysql-user
-            # - name: MYSQL_PASSWORD
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: mysql-credentials
-            #       key: mysql-password
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: mysql-user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: mysql-password
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
-  volumeClaimTemplates: # Esta sección está bien ubicada e indentada aquí
+  volumeClaimTemplates:
     - metadata:
         name: mysql-persistent-storage
       spec:
         accessModes: [ "ReadWriteOnce" ]
-        storageClassName: standard
+        storageClassName: do-block-storage
         resources:
           requests:
             storage: 5Gi
