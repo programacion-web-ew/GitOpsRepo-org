@@ -4,7 +4,7 @@ metadata:
   name: backend-ingress
   namespace: biblioteca
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /biblioteca1/v1/$2 
 spec:
   rules:
   - host: minikube.backend
