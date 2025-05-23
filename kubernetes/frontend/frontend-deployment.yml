@@ -19,11 +19,5 @@ spec:
           ports:
             - containerPort: 80
           env:
-            # ¡Aquí está la clave de la conexión!
-            # Vamos a usar un placeholder y lo ajustaremos después de crear el Ingress.
-            # Idealmente, esta URL sería la URL pública del Ingress (ej. http://tu-dominio.com/biblioteca1/v1)
-            # Por ahora, para la implementación inicial, podemos dejarlo así o ajustarlo a la IP del LB.
-            # Lo más fácil es que el frontend llame directamente al Ingress.
             - name: BACKEND_API_URL
-              value: "http://<TU_INGRESS_HOST_O_IP>/biblioteca1/v1" # ¡Necesitarás reemplazar esto!
-              # Por ejemplo: http://midominio.com/biblioteca1/v1 o http://192.0.2.1/biblioteca1/v1
+              value: "http://57.230.202.14/biblioteca1/v1"

@@ -30,3 +30,5 @@ ssh-keygen -p -m PEM -f ~/.ssh/id_rsa
 
 
 minikube addons enable ingress
+
+kubectl get ingress -n biblioteca
