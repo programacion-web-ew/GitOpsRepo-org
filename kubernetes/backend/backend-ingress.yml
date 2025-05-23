@@ -5,13 +5,13 @@ metadata:
   namespace: biblioteca
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /biblioteca1/v1/$2
-    nginx.ingress.kubernetes.io/ssl-redirect: "false" 
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
-  tls: 
+  tls:
   - hosts:
     - minikube.backend
-    secretName: minikube-tls 
+    secretName: minikube-tls
   rules:
   - host: minikube.backend
     http:
@@ -20,6 +20,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: minikube.backend
+            name: backend-svc
             port:
               number: 8000
