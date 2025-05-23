@@ -1,13 +1,8 @@
 apiVersion: v1
-kind: Service
+kind: Secret
 metadata:
-  name: mysql-svc
+  name: mysql-credentials
   namespace: biblioteca
-spec:
-  selector:
-    app: mysql # Selecciona los Pods del StatefulSet
-  ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: mysql # Nombre del puerto en el contenedor del Pod
-  clusterIP: None # Service Headless (no tiene ClusterIP, útil para StatefulSets y DNS)
+type: Opaque
+data:
+  mysql-root-password: cm9vdA== # 'root' codificado en base64
