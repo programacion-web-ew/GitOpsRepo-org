@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts:
     - minikube.frontend
-    secretName: minikube-tls e
+    secretName: minikube-tls
   rules:
   - host: minikube.frontend
     http:
