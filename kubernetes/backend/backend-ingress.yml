@@ -4,13 +4,19 @@ metadata:
   name: backend-ingress
   namespace: biblioteca
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /biblioteca1/v1/$2 
+    nginx.ingress.kubernetes.io/rewrite-target: /biblioteca1/v1/$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "false" 
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
+  tls: 
+  - hosts:
+    - minikube.backend
+    secretName: minikube-tls 
   rules:
   - host: minikube.backend
     http:
       paths:
-      - path: /
+      - path: /biblioteca1/v1(/|$)(.*)
         pathType: Prefix
         backend:
           service:
