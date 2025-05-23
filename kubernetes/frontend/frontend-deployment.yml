@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: frontend-app
-          image: ewdeve/pgweb:519be51
+          image: ewdeve/pgweb:latest
           ports:
             - containerPort: 80
           env:
             - name: BACKEND_API_URL
-              value: "http://backend-svc/biblioteca1/v1"
+              value: "http://backend-svc:8000/biblioteca1/v1"
