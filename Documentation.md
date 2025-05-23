@@ -13,7 +13,7 @@ minikube:
 minikube service argocd-server --url -n argocd
 admin
 **password**
-59WOAk5VfkPhneBn
+lkCI1qGnI3LeJJ5R
 
 kubectl create namespace biblioteca
 kubectl port-forward pod/mysql-db-0 3309:3306 -n biblioteca

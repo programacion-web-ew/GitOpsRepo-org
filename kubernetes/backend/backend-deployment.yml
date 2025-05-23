@@ -20,7 +20,7 @@ spec:
             - containerPort: 8000
           env:
             - name: DB_URL
-              value: "jdbc:mysql://mysql-svc:3306/biblioteca1?useSSL=false&serverTimezone=UTC"
+              value: "jdbc:mysql://mysql-svc:3306/biblioteca1?useSSL=false&allowPublicKeyRetrieval=True&serverTimezone=UTC" # <-- ¡Aquí está el cambio!
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
