@@ -20,4 +20,4 @@ spec:
             - containerPort: 80
           env:
             - name: BACKEND_API_URL
-              value: https://minikube.backend:8000/biblioteca1/v1
+              value: https://minikube.backend/biblioteca1/v1
