@@ -6,10 +6,10 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    nginx.ingress.kubernetes.io/rewrite-target: /biblioteca1/v1/$2
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: biblioteca.example.com # Mantén esta regla, no la elimines
+  - host: biblioteca.example.com
     http:
       paths:
       - backend:
@@ -24,16 +24,16 @@ spec:
             name: frontend-svc
             port:
               number: 80
-        path: /
+        path: / # <--- Ruta para el frontend con host
         pathType: Prefix
-  - http: # <--- ¡AÑADE ESTA NUEVA SECCIÓN! Esto es para la IP directa.
+  - http: # Esta es la regla sin host, para la IP directa
       paths:
       - backend:
           service:
             name: frontend-svc
             port:
               number: 80
-        path: /
+        path: / # <--- Ruta para el frontend sin host
         pathType: Prefix
       - backend:
           service:
