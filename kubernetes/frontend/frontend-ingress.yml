@@ -1,6 +1,7 @@
+# ... (tu Ingress existente)
 spec:
   rules:
-  - host: biblioteca.example.com  # <--- Solo coincide con este host
+  - host: biblioteca.example.com
     http:
       paths:
       - backend:
@@ -16,4 +17,20 @@ spec:
             port:
               number: 80
         path: /
+        pathType: Prefix
+  - http: 
+      paths:
+      - backend:
+          service:
+            name: frontend-svc
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+      - backend:
+          service:
+            name: backend-svc
+            port:
+              number: 8000
+        path: /biblioteca1/v1(/|$)(.*)
         pathType: Prefix

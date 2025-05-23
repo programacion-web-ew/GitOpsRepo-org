@@ -20,4 +20,4 @@ spec:
             - containerPort: 80
           env:
             - name: BACKEND_API_URL
-              value: "http://57.230.202.14/biblioteca1/v1"
+              value: "http://129.212.137.103/biblioteca1/v1"
