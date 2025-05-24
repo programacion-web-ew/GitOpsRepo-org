@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend-app
-          image: ewdeve/pgweb:8a525d2
+          image: ewdeve/pgweb:ec5373c
           ports:
             - containerPort: 80
           env:
